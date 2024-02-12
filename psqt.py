@@ -272,12 +272,13 @@ def board_evaluation(board: chess.Board) -> float:
         piece = board.piece_at(square)
         if piece is not None:
             if piece.color == chess.WHITE:
+                square = (7 - square//8)*8 + square%8
                 mg[piece.color] += (
-                    MG_PESTO[piece.piece_type][63 - square]
+                    MG_PESTO[piece.piece_type][square]
                     + MG_PIECE_VALUES[piece.piece_type]
                 )
                 eg[piece.color] += (
-                    EG_PESTO[piece.piece_type][63 - square]
+                    EG_PESTO[piece.piece_type][square]
                     + EG_PIECE_VALUES[piece.piece_type]
                 )
             else:
